@@ -1,5 +1,12 @@
+# !/usr/bin/python3.6
+# -*- coding:utf-8 -*-
+'''
+Project: common
+Author: jc feng (jcfeng2013@gmail.com)
+File Created: 2019-05-31 17:18:49
+Last Modified: 2019-05-31 20:42:12
+'''
 
-# python3.6
 
 import traceback
 from queue import Queue, Empty
@@ -40,3 +47,11 @@ class MyPool:
 
     def process(self, req, i):
         pass
+
+
+def secure_string(string):
+    string = string.replace('！', '!').replace('\\', '_').replace('/', '_')
+    string = string.replace('？', '_').replace('<', '_').replace('>', '_')
+    string = string.replace('<', '_').replace('|', '1').replace('*', '.')
+    string = string.replace(':', '.').replace('"', '\'').strip()
+    return string
