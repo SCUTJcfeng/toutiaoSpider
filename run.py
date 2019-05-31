@@ -4,7 +4,7 @@
 Project: toutiaoSpider
 Author: jc feng (jcfeng2013@gmail.com)
 File Created: 2019-05-31 17:19:34
-Last Modified: 2019-05-31 20:59:49
+Last Modified: 2019-05-31 21:16:11
 '''
 
 import re
@@ -28,15 +28,14 @@ def get_feed_news(max_behot_time, sleep=1):
         time.sleep(sleep)
         if status == 200:
             try:
-                res, title, content, source, source_time = extract_news_text(text)
+                title, content, source, source_time = extract_news_text(text)
             except:
                 print(news_url)
                 continue
-            if res == 0:
-                filename = secure_string(f'{title}_{source}_{source_time}.html')
-                filename = create_path(folder, filename)
-                SaveTool.saveText(content, filename)
-                print(f'{filename} save success')
+            filename = secure_string(f'{title}_{source}_{source_time}.html')
+            filename = create_path(folder, filename)
+            SaveTool.saveText(content, filename)
+            print(f'{filename} save success')
         else:
             print(news_url)
     get_feed_news(result['next']['max_behot_time'])
@@ -49,7 +48,7 @@ def extract_news_text(text):
     source = source[0] if source else 'unknown'
     time = re.search(r"time: '(.*)'", text).group(1)
     content = HTMLParser().unescape(content)
-    return 0, title, content, source, time
+    return title, content, source, time
 
 
 if __name__ == "__main__":
