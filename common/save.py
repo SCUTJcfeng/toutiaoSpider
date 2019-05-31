@@ -1,3 +1,12 @@
+# !/usr/bin/python3.6
+# -*- coding:utf-8 -*-
+'''
+Project: common
+Author: jc feng (jcfeng2013@gmail.com)
+File Created: 2019-05-31 17:18:49
+Last Modified: 2019-05-31 20:39:02
+'''
+
 # python3.6
 
 import csv
@@ -13,8 +22,8 @@ class SaveTool:
     def saveText(data, filename, encoding='utf8', use_lock=False):
         if use_lock:
             SaveTool.__lock.acquire()
-            with open(filename, 'w', encoding=encoding) as f:
-                f.write(data)
+        with open(filename, 'w', encoding=encoding) as f:
+            f.write(data)
         if use_lock:
             SaveTool.__lock.release()
 
